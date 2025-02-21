@@ -1,0 +1,19 @@
+{
+  "name": "lyngdev/figma-api",
+  "description": "php figma api",
+  "type": "composer-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "LyngDev"
+    }
+  ],
+  "require": {
+    "php": "^8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "LyngDev\\": "src"
+    }
+  }
+}
