@@ -2,8 +2,9 @@
   "name": "lyngdev/figma-api",
   "description": "php figma api",
   "license": "MIT",
-  "version": "1.0.1",
+  "version": "1.1.2",
   "minimum-stability": "stable",
+  "prefer-stable": true,
   "authors": [
     {
       "name": "LyngDev"
