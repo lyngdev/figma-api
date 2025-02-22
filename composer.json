@@ -1,7 +1,6 @@
 {
   "name": "lyngdev/figma-api",
   "description": "php figma api",
-  "type": "composer-plugin",
   "license": "MIT",
   "authors": [
     {
