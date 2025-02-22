@@ -3,6 +3,7 @@
   "description": "php figma api",
   "license": "MIT",
   "version": "1.0.0",
+  "stability": "stable",
   "authors": [
     {
       "name": "LyngDev"
