@@ -47,8 +47,8 @@ class FigmaClient
                 'ids' => $ids,
                 'format' => $imageFormat,
                 'scale' => max(0.01, min(4, $scale)),
-                'svg_outline_text' => $svgOutlineText,
-                'svg_include_id' => $svgIncludeId,
+                'svg_outline_text' => $svgOutlineText ? 'true' : 'false',
+                'svg_include_id' => $svgIncludeId ? 'true' : 'false',
             ]
         ]);
     }
