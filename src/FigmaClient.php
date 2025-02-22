@@ -1,6 +1,6 @@
 <?php
 
-namespace LyngDev;
+namespace LyngDev\FigmaAPI;
 
 class FigmaClient
 {

@@ -8,9 +8,13 @@
       "name": "LyngDev"
     }
   ],
+  "require": {
+    "php": ">=8.3",
+    "ext-json": "*"
+  },
   "autoload": {
     "psr-4": {
-      "LyngDev\\": "src"
+      "LyngDev\\FigmaAPI\\": "src/"
     }
   }
 }
