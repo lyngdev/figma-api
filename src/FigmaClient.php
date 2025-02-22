@@ -18,9 +18,15 @@ class FigmaClient
         ]);
     }
 
-    public function getProjectFiles(string $projectId){
+    public function getProjectFiles(string $projectId, ImageFormat $imageFormat = ImageFormat::PNG, float $scale = 1.0, bool $svgOutlineText = true, bool $svgIncludeId = false){
         return $this->client->request('GET', $this->getUrl("/v1/projects/{$projectId}/files"),[
-            'headers' => $this->getAuthHeaders()
+            'headers' => $this->getAuthHeaders(),
+            'query' => [
+                'format' => $imageFormat,
+                'scale' => max(0.01, min(4, $scale)),
+                'svg_outline_text' => $svgOutlineText,
+                'svg_include_id' => $svgIncludeId,
+            ]
         ]);
     }
 
