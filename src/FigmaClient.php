@@ -45,7 +45,7 @@ class FigmaClient
             'headers' => $this->getAuthHeaders(),
             'query' => [
                 'ids' => $ids,
-                'format' => $imageFormat,
+                'format' => $imageFormat->value,
                 'scale' => max(0.01, min(4, $scale)),
                 'svg_outline_text' => $svgOutlineText ? 'true' : 'false',
                 'svg_include_id' => $svgIncludeId ? 'true' : 'false',
