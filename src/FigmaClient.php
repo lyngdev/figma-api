@@ -12,13 +12,52 @@ class FigmaClient
         $this->client = new Client();
     }
 
-    public function getFiles(string $key){
-        $path = '/v1/files/' . $key;
-        $url = $this->getUrl($path);
-        $headers = $this->getAuthHeaders();
+    public function getProjects(string $teamId){
+        return $this->client->request('GET', $this->getUrl("/v1/teams/{$teamId}/projects"), [
+            'headers' => $this->getAuthHeaders()
+        ]);
+    }
 
+    public function getProjectFiles(string $projectId){
+        return $this->client->request('GET', $this->getUrl("/v1/projects/{$projectId}/files"),[
+            'headers' => $this->getAuthHeaders()
+        ]);
+    }
+
+    public function getUser(){
+        return $this->client->request('GET', $this->getUrl('/v1/me'),[
+            'headers' => $this->getAuthHeaders()
+        ]);
+    }
+
+    public function getComments(string $key){
+        return $this->client->request('GET', $this->getUrl("/v1/files/{$key}/comments"), [
+            'headers' => $this->getAuthHeaders()
+        ]);
+    }
+
+    public function getImage(string $key, array|string $ids){
+        $url = $this->getUrl("/v1/images/{$key}");
+        if(is_array($ids)){
+            $ids = implode(',', $ids);
+        }
         return $this->client->request('GET', $url, [
-            'headers' => $headers,
+            'headers' => $this->getAuthHeaders(),
+            'query' => [
+                'ids' => $ids,
+            ]
+        ]);
+    }
+
+    public function getFileNodes(string $key){
+        return $this->client->request('GET', $this->getUrl("/v1/files/{$key}/nodes"), [
+            'headers' => $this->getAuthHeaders(),
+        ]);
+    }
+
+    public function getFile(string $key){
+        return $this->client->request('GET', $this->getUrl("/v1/files/{$key}"), [
+            'headers' => $this->getAuthHeaders(),
         ]);
     }
 
