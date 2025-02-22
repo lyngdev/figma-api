@@ -18,15 +18,9 @@ class FigmaClient
         ]);
     }
 
-    public function getProjectFiles(string $projectId, ImageFormat $imageFormat = ImageFormat::PNG, float $scale = 1.0, bool $svgOutlineText = true, bool $svgIncludeId = false){
+    public function getProjectFiles(string $projectId){
         return $this->client->request('GET', $this->getUrl("/v1/projects/{$projectId}/files"),[
             'headers' => $this->getAuthHeaders(),
-            'query' => [
-                'format' => $imageFormat,
-                'scale' => max(0.01, min(4, $scale)),
-                'svg_outline_text' => $svgOutlineText,
-                'svg_include_id' => $svgIncludeId,
-            ]
         ]);
     }
 
@@ -42,7 +36,7 @@ class FigmaClient
         ]);
     }
 
-    public function getImage(string $key, array|string $ids){
+    public function getImage(string $key, array|string $ids, ImageFormat $imageFormat = ImageFormat::PNG, float $scale = 1.0, bool $svgOutlineText = true, bool $svgIncludeId = false){
         $url = $this->getUrl("/v1/images/{$key}");
         if(is_array($ids)){
             $ids = implode(',', $ids);
@@ -51,6 +45,10 @@ class FigmaClient
             'headers' => $this->getAuthHeaders(),
             'query' => [
                 'ids' => $ids,
+                'format' => $imageFormat,
+                'scale' => max(0.01, min(4, $scale)),
+                'svg_outline_text' => $svgOutlineText,
+                'svg_include_id' => $svgIncludeId,
             ]
         ]);
     }
