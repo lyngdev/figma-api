@@ -2,7 +2,6 @@
 
 namespace LyngDev\FigmaAPI;
 
-
 use GuzzleHttp\Client;
 use LyngDev\FigmaAPI\Model\Document;
 
@@ -37,6 +36,7 @@ class FigmaClient
         ]);
     }
 
+
     public function getFrames(string $key){
         $fileData = $this->getFile($key);
         $frames = [];
@@ -52,7 +52,7 @@ class FigmaClient
         if(is_array($ids)){
             $ids = implode(',', $ids);
         }
-        return $this->client->request('GET', $url, [
+        return $this->handleResponse($this->client->request('GET', $url, [
             'headers' => $this->getAuthHeaders(),
             'query' => [
                 'ids' => $ids,
@@ -61,7 +61,7 @@ class FigmaClient
                 'svg_outline_text' => $svgOutlineText ? 'true' : 'false',
                 'svg_include_id' => $svgIncludeId ? 'true' : 'false',
             ]
-        ]);
+            ]),'');
     }
 
     public function getFileNodes(string $key){
@@ -95,5 +95,11 @@ class FigmaClient
         return [
             'X-Figma-Token' => $this->configuration->accessToken
         ];
+    }
+
+    private function handleResponse($response, string $targetClass)
+    {
+        //TODO: Do something to handle the image response
+        return $response;
     }
 }
