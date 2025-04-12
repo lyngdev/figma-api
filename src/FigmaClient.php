@@ -4,6 +4,7 @@ namespace LyngDev\FigmaAPI;
 
 
 use GuzzleHttp\Client;
+use LyngDev\FigmaAPI\Model\Document;
 
 class FigmaClient
 {
@@ -34,6 +35,16 @@ class FigmaClient
         return $this->client->request('GET', $this->getUrl("/v1/files/{$key}/comments"), [
             'headers' => $this->getAuthHeaders()
         ]);
+    }
+
+    public function getFrames(string $key){
+        $fileData = $this->getFile($key);
+        $frames = [];
+        if($fileData->getStatusCode() == 200){
+            $document = new Document($fileData->getBody());
+            $frames = $document->getFrameNames();
+        }
+        return $frames;
     }
 
     public function getImage(string $key, array|string $ids, ImageFormat $imageFormat = ImageFormat::PNG, float $scale = 1.0, bool $svgOutlineText = true, bool $svgIncludeId = false){
