@@ -12,7 +12,7 @@ class Document
     }
 
     public function getChildrenByType(string $typeToFind, bool $caseSensitive = false){
-        $documentChildren = $this->arrayData["children"] ?? [];
+        $documentChildren = $this->arrayData["document"]["children"] ?? [];
         if(is_array($documentChildren)){
             return self::findChildren($documentChildren, function($child) use ($caseSensitive, $typeToFind) {
                 if($caseSensitive === false && strtolower($child['type'] ?? '') === strtolower($typeToFind)){
