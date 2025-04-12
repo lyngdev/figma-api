@@ -41,7 +41,7 @@ class FigmaClient
         $fileData = $this->getFile($key);
         $frames = [];
         if($fileData->getStatusCode() == 200){
-            $document = new Document($fileData->getBody());
+            $document = new Document($fileData->getBody()->getContents());
             $frames = $document->getFrameNames();
         }
         return $frames;
